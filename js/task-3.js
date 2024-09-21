@@ -1,17 +1,34 @@
-function getElementWidth(content, padding, border) {
-    // Перетворюємо рядки в числа, відкидаючи "px"
-    const contentWidth = parseFloat(content);
-    const paddingWidth = parseFloat(padding);
-    const borderWidth = parseFloat(border);
+class StringBuilder {
+  #value;
 
-    // Обчислюємо загальну ширину елемента
-    const totalWidth = contentWidth + 2 * paddingWidth + 2 * borderWidth;
+  constructor(initialValue) {
+    this.#value = initialValue;
+  }
 
-    // Повертаємо результат
-    return totalWidth;
+  getValue() {
+    return this.#value;
+  }
+
+  padEnd(str) {
+    this.#value += str;
+  }
+
+  padStart(str) {
+    this.#value = str + this.#value;
+  }
+
+  padBoth(str) {
+    this.padStart(str);
+    this.padEnd(str);
+  }
 }
 
-// Приклад виклику функції
-console.log(getElementWidth("50px", "8px", "4px")); // 74
-console.log(getElementWidth("60px", "12px", "8.5px")); // 101
-console.log(getElementWidth("200px", "0px", "0px")); // 200
+// Приклади викликів методів
+const builder = new StringBuilder(".");
+console.log(builder.getValue()); // "."
+builder.padStart("^");
+console.log(builder.getValue()); // "^."
+builder.padEnd("^");
+console.log(builder.getValue()); // "^.^"
+builder.padBoth("=");
+console.log(builder.getValue()); // "=^.^="
