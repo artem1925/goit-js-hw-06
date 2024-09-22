@@ -1,45 +1,39 @@
-function makeTransaction(quantity, pricePerDroid) {
-    // Обчислюємо загальну вартість замовлення
-    const totalCost = quantity * pricePerDroid;
-
-    // Створюємо рядок з повідомленням
-    const message = `You ordered ${quantity} droids worth ${totalCost} credits!`;
-
-    // Повертаємо рядок
-    return message;
-}
-
-// Приклад виклику функції
-console.log(makeTransaction(5, 3000)); // "You ordered 5 droids worth 15000 credits!"
-console.log(makeTransaction(3, 1000)); // "You ordered 3 droids worth 3000 credits!"
-console.log(makeTransaction(10, 500)); // "You ordered 10 droids worth 5000 credits!"
 const customer = {
-  username: "Mango",
-  balance: 24000,
-  discount: 0.1,
-  orders: ["Burger", "Pizza", "Salad"],
-  // Change code below this line
+  username: "Mango", // Ім'я користувача
+  balance: 24000, // Баланс користувача
+  discount: 0.1, // Знижка користувача
+  orders: ["Burger", "Pizza", "Salad"], // Замовлення користувача
   getBalance() {
+    // Метод для отримання балансу
     return this.balance;
   },
   getDiscount() {
+    // Метод для отримання знижки
     return this.discount;
   },
   setDiscount(value) {
+    // Метод для встановлення нової знижки
     this.discount = value;
   },
   getOrders() {
+    // Метод для отримання списку замовлень
     return this.orders;
   },
   addOrder(cost, order) {
+    // Метод для додавання нового замовлення
+    // Віднімаємо вартість замовлення з урахуванням знижки від балансу
     this.balance -= cost - cost * this.discount;
+    // Додаємо нове замовлення до списку замовлень
     this.orders.push(order);
   },
-  // Change code above this line
+  // Зміни коду завершено
 };
 
+// Встановлюємо нову знижку
 customer.setDiscount(0.15);
-console.log(customer.getDiscount()); // 0.15
+console.log(customer.getDiscount()); // Виводимо нову знижку: 0.15
+
+// Додаємо нове замовлення
 customer.addOrder(5000, "Steak");
-console.log(customer.getBalance()); // 19750
-console.log(customer.getOrders()); // ["Burger", "Pizza", "Salad", "Steak"]
+console.log(customer.getBalance()); // Виводимо новий баланс: 19750
+console.log(customer.getOrders()); // Виводимо оновлений список замовлень: ["Burger", "Pizza", "Salad", "Steak"]
